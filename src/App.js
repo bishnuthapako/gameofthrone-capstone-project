@@ -4,7 +4,7 @@ function App ()
 {
   return (
     <>
-      Guided Capstone Project
+      <h3 className={styles.heading}>Guided Capstone Project</h3>
     </>
   );
 }
