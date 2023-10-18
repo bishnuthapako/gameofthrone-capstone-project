@@ -1,0 +1,13 @@
+* {
+    box-sizing: border-box;
+    width: 100%;
+    height: auto;
+}
+body {
+    background-image: url("https://preview.redd.it/a-house-of-the-dragons-wallpaper-v0-kgic93z51hx91.png?width=640&crop=smart&auto=webp&s=fbab9c40f5a6012614b8e11f9a9aa4a0e612a948");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    width: 100%;
+    height: 100vh;
+}

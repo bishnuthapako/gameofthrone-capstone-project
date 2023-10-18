@@ -10,7 +10,7 @@ const NavigationBar = () => {
 
   return (
     
-    <Navbar expand="lg" className="bg-body-tertiary">
+    <Navbar expand="lg" className="bg-body-tertiary sticky-top">
       <Container>
         <Navbar.Brand as={Link} to={"/"}>GameOfThrones</Navbar.Brand>
         <Navbar.Toggle aria-controls="navbarScroll" />

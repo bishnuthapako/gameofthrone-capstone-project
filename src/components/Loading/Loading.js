@@ -1,11 +1,25 @@
-import React from 'react'
+import React, { useEffect, useState } from "react";
+import styles from "../Loading/Loading.module.css"
 
 const Loading = () => {
-  return (
-    <div>
-      <h1>This is loading button</h1>
-    </div>
-  )
-}
+  const [dots, setDots] = useState([]);
 
-export default Loading
+  useEffect(()=>
+  {
+setTimeout(()=>{
+  if(dots.length < 5){
+    setDots(prevDots => [...prevDots, "."])
+  }
+},200)
+
+
+  },[dots])
+  return (
+    <div className={styles.loading}>
+      <span style={{color:"white"}}>Loading...</span>
+      {dots.map((dots,idx)=><span key={idx} style={{color: "white"}}>{dots}</span>)}
+    </div>
+  );
+};
+
+export default Loading;
