@@ -11,7 +11,6 @@ function App() {
   const { data, setData } = useFetchData();
   const { isLoading } = useContext(LoadingContext);
 
-  console.log(data, "data");
 
   return (
     <>
@@ -19,7 +18,7 @@ function App() {
         <BrowserRouter>
           <NavigationBar />
           <div> 
-          <AppRoute />
+          <AppRoute data={data} />
           </div>
         </BrowserRouter>
       }

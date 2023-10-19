@@ -2,27 +2,30 @@ import React from "react";
 import { Container, Card, Row, Col, Button } from "react-bootstrap";
 import styles from "./Characters.module.css";
 
-const Characters = () => {
+const Characters = ({ data }) => {
+  console.log(data, "char-data");
+
   return (
-    <div className={styles.characters}>
-      <Container className={`text-center text-white`}>
-        <Row className="mt-2">
-          <Col lg={3} md={3} xs={12}>
-            <Card>
-              <Card.Body>
-                <Card.Title>
-                  Hello this is heading
-                </Card.Title>
-                <Card.Text>
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit. Expedita, eligendi!
-                </Card.Text>
-                <Button variant="primary">Click Here</Button>
-              </Card.Body>
-            </Card>
-          </Col>
-        </Row>
-      </Container>
-    </div>
+    <Container className={`text-center text-white ${styles.characters}`}>
+      <Row className="mt-3">
+        {data.length !== 0 && data.map((items, index) => {
+          return (
+            <Col lg={6} md={6} sm={6} xs={12} className="mb-3">
+              <h1>{items.aliases[0]}</h1>
+              <h5>{items.gender}</h5>
+              {/* <Card className="bg-secondary">
+                <Card.Body>
+                  <Card.Title>{items.culture}</Card.Title>
+                  <Card.Text>
+                    {items.aliases[0]}
+                  </Card.Text>
+                </Card.Body>
+              </Card> */}
+            </Col>
+          );
+        })}
+      </Row>
+    </Container>
   );
 };
 

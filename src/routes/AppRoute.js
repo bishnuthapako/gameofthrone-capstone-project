@@ -5,11 +5,15 @@ import Characters from "../pages/Characters/Characters";
 import Character from '../pages/Character/Characters';
 import Houses from "../pages/House/Houses";
 
-const AppRoute = () => {
+const AppRoute = ({data}) => {
+
   return (
     <Routes>
         <Route index path="/" element={<Home />} />
-        <Route path="/characters" element={<Characters/>}/>
+        {/* {
+          data.length !== 0 && data.map((items, idx)=> (<Route key={idx} path="/characters" element={<Characters data ={items}/>}/>))
+        } */}
+        <Route path="/characters" element={<Characters data={data} />} />
         <Route path="/characters/:id" element={<Character />} />
         <Route path="/houses" element={<Houses />}/>
     </Routes>
