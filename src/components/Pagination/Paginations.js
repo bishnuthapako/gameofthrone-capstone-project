@@ -2,8 +2,8 @@ import React from 'react'
 
 const Paginations = () => {
   return (
-    <nav aria-label="Page navigation example">
-  <ul class="pagination">
+    <nav aria-label="Page navigation example" style={{height: "20px"}}>
+  <ul class="pagination" style={{height: "100px"}}>
     <li class="page-item"><a class="page-link" href="#">≺ Previous</a></li>
     <li class="page-item"><a class="page-link" href="#">1</a></li>
     <li class="page-item"><a class="page-link" href="#">2</a></li>
