@@ -1,13 +1,22 @@
 * {
-    box-sizing: border-box;
-    width: 100%;
-    height: auto;
+  box-sizing: border-box;
+  width: 100%;
+  height: auto;
 }
 body {
-    background-image: url("https://files.brainfall.com/wp-content/uploads/2015/10/got-featured-1200x0.jpg.webp");
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
-    width: 100%;
-    height: auto;
+  background-image: url("https://cdn.pixabay.com/photo/2023/02/25/20/26/abstract-7814187_1280.jpg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  width: 100%;
+  height: auto;
+}
+
+h1 {
+    font-family: 'Abril Fatface', serif;
+  color: red;
+  /* font-family: "Oswald", sans-serif; */
+}
+h5{
+    font-family: 'Pacifico', cursive;
 }
