@@ -8,7 +8,7 @@ const Characters = ({ data }) => {
 
   return (
     <>
-      <Container className={`text-center text-white ${styles.characters}`}>
+      <Container className={`text-white ${styles.characters}`}>
         <Row className="mt-3">
           {data.length !== 0 &&
             data.map((items, index) => {

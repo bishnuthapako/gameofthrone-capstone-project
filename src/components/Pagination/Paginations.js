@@ -2,9 +2,22 @@ import React from 'react'
 
 const Paginations = () => {
   return (
-    <div>
-      <h2>Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloribus obcaecati provident officiis hic commodi possimus consequatur ea eligendi molestiae incidunt, numquam tempora, facere fugit aut ab sequi, esse laborum voluptate. Cupiditate ducimus quod sequi nihil praesentium reiciendis, velit labore error repellendus. Esse reprehenderit impedit tempora doloribus dolorum reiciendis dolorem cupiditate?</h2>
-    </div>
+    <nav aria-label="Page navigation example">
+  <ul class="pagination">
+    <li class="page-item"><a class="page-link" href="#">≺ Previous</a></li>
+    <li class="page-item"><a class="page-link" href="#">1</a></li>
+    <li class="page-item"><a class="page-link" href="#">2</a></li>
+    <li class="page-item"><a class="page-link" href="#">3</a></li>
+    <li class="page-item"><a class="page-link" href="#">4</a></li>
+    <li class="page-item"><a class="page-link" href="#">5</a></li>
+    <li class="page-item"><a class="page-link" href="#">6</a></li>
+    <li class="page-item"><a class="page-link" href="#">7</a></li>
+    <li class="page-item"><a class="page-link" href="#">8</a></li>
+    <li class="page-item"><a class="page-link" href="#">9</a></li>
+    <li class="page-item"><a class="page-link" href="#">10</a></li>
+    <li class="page-item"><a class="page-link" href="#">Next ≻</a></li>
+  </ul>
+</nav>
   )
 }
 
