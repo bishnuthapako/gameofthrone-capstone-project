@@ -30,15 +30,13 @@ const Characters = () => {
       fetchCharacters(url)
   }, [page])
 
-  const handlePrevClick = (event) => {
-    setPage(page - 1);
-    console.log(event.selected, "checked");
-  };
+  // const handlePrevClick = (event) => {
+  //   setPage(page - 1);
+  // };
 
-  const handleNextClick = (event) => {
-    setPage(page + 1);
-    console.log(event.selected, "checked");
-  };
+  // const handleNextClick = (event) => {
+  //   setPage(page + 1);
+  // };
 
   return (
     <>
@@ -84,10 +82,14 @@ const Characters = () => {
             />
           </Col>
         </Row> */}
-        <Row>
-          <button className="prev" onClick={handlePrevClick}>Prev</button>
-          <button className="next" onClick={handleNextClick}>Next</button>
-        </Row>
+        {/* <Row>
+          <Col>
+          <div style={{display: "flex", justifyContent: "space-between"}}>
+          <button className="btn btn-warning" onClick={handlePrevClick}>Prev</button>
+          <button className="btn btn-warning" onClick={handleNextClick}>Next</button>
+          </div>
+          </Col>
+        </Row> */}
       </Container>
     </>
   );

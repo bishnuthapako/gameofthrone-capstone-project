@@ -1,0 +1,8 @@
+.vertical {
+    writing-mode: vertical-rl;
+    transform: rotate(180deg);
+}
+
+.tdStyle{
+    width: 20px;
+}
