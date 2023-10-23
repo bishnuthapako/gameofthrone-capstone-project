@@ -1,12 +1,14 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 
-export const useFetchData = () => {
+export const useFetchData = (apiURL) => {
   const [data, setData] = useState([]);
+
 
   const fetchData = async () => {
     try {
-      const response = await axios.get(process.env.REACT_APP_Characters);
+      console.log(apiURL)
+      const response = await axios.get(apiURL);
       if (response.data) {
         setData((prevData) => [...prevData, ...response.data]);
       }

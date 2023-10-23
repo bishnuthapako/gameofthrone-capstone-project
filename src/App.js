@@ -8,7 +8,6 @@ import { LoadingContext } from "./components/context/LoadingProvider";
 import { BrowserRouter } from "react-router-dom";
 
 function App() {
-  const { data, setData } = useFetchData();
   const { isLoading } = useContext(LoadingContext);
 
 
@@ -18,7 +17,7 @@ function App() {
         <BrowserRouter>
           <NavigationBar />
           <div> 
-          <AppRoute data={data} />
+          <AppRoute/>
           </div>
         </BrowserRouter>
       }
