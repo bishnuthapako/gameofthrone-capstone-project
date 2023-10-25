@@ -1,12 +1,43 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Container, Row, Col, Button, Table } from "react-bootstrap";
 import { useLocation, useParams } from "react-router-dom";
 import styles from "./Character.module.css";
+import axios from "axios";
 
 const Character = (props) => {
+  
+  const [pageNum, setPageNum] = useState(1)
+  const [characters, setCharacters] = useState([])
+  
   const location = useLocation();
   const character = location.state;
   console.log("character", character);
+
+  const {page} = useParams();
+
+  console.log(page, 'page')
+  const fetchCharacters = async (url)=>{
+    const response = await axios.get(url);
+    if(response.data.length !== 0){
+      setCharacters(response.data)
+    }
+  }
+
+  useEffect(() => {
+    const url = `${process.env.REACT_APP_CharactersAPI}&page=${page}`;
+      console.log("Page clicked", page, `${process.env.REACT_APP_CharactersAPI}&page=${page}`)
+      // Hit the API and call setData
+      //fetchCharacters(url)
+      fetchCharacters(url)
+  }, [page])
+
+  const previousCharacter = ()=> {
+    console.log("previous button")
+  }
+
+  const nextCharacter = ()=>{
+    console.log("next button")
+  }
   return (
     <div>
       <Container>
@@ -35,7 +66,6 @@ const Character = (props) => {
                 bordered
                 hover
                 style={{
-                  width: "100%",
                   display: "grid",
                   justifyContent: "center",
                 }}
@@ -58,7 +88,7 @@ const Character = (props) => {
                     <td>{character?.born ? character?.born : "NA"}</td>
                   </tr>
                   <tr>
-                    <td>Died</td>
+                    <td>Died:</td>
                     <td>{character?.died ? character?.died : "NA"}</td>
                   </tr>
                   <tr>
@@ -107,10 +137,10 @@ const Character = (props) => {
             >
               <Row>
                 <Col>
-                  <Button className="btn btn-warning">Previous</Button>
+                  <Button onClick={previousCharacter} className="btn btn-warning">≪ Previous</Button>
                 </Col>
                 <Col>
-                  <Button className="btn btn-warning">Next</Button>
+                  <Button onClick={nextCharacter} className="btn btn-warning">Next ≫</Button>
                 </Col>
               </Row>
             </div>
