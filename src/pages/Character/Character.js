@@ -6,8 +6,8 @@ import axios from "axios";
 
 const Character = (props) => {
   
-  const [pageNum, setPageNum] = useState(1)
-  const [characters, setCharacters] = useState([])
+  // const [pageNum, setPageNum] = useState(1)
+  // const [characters, setCharacters] = useState([])
   
   const location = useLocation();
   const character = location.state;
@@ -16,20 +16,20 @@ const Character = (props) => {
   const {page} = useParams();
 
   console.log(page, 'page')
-  const fetchCharacters = async (url)=>{
-    const response = await axios.get(url);
-    if(response.data.length !== 0){
-      setCharacters(response.data)
-    }
-  }
+  // const fetchCharacters = async (url)=>{
+  //   const response = await axios.get(url);
+  //   if(response.data.length !== 0){
+  //     setCharacters(response.data)
+  //   }
+  // }
 
-  useEffect(() => {
-    const url = `${process.env.REACT_APP_CharactersAPI}&page=${page}`;
-      console.log("Page clicked", page, `${process.env.REACT_APP_CharactersAPI}&page=${page}`)
-      // Hit the API and call setData
-      //fetchCharacters(url)
-      fetchCharacters(url)
-  }, [page])
+  // useEffect(() => {
+  //   const url = `${process.env.REACT_APP_CharactersAPI}&page=${page}`;
+  //     console.log("Page clicked", page, `${process.env.REACT_APP_CharactersAPI}&page=${page}`)
+  //     // Hit the API and call setData
+  //     //fetchCharacters(url)
+  //     fetchCharacters(url)
+  // }, [page])
 
   const previousCharacter = ()=> {
     console.log("previous button")
