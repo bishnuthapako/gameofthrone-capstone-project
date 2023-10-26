@@ -5,30 +5,17 @@ import styles from "./Character.module.css";
 import axios from "axios";
 
 const Character = (props) => {
-  // const [pageNum, setPageNum] = useState(1)
-  // const [characters, setCharacters] = useState([])
+ 
 
   const location = useLocation();
   const character = location.state;
   console.log("character", character);
+  const { id } = useParams();
 
-  const { page } = useParams();
-
-  console.log(page, "page");
-  // const fetchCharacters = async (url)=>{
-  //   const response = await axios.get(url);
-  //   if(response.data.length !== 0){
-  //     setCharacters(response.data)
-  //   }
-  // }
-
-  // useEffect(() => {
-  //   const url = `${process.env.REACT_APP_CharactersAPI}&page=${page}`;
-  //     console.log("Page clicked", page, `${process.env.REACT_APP_CharactersAPI}&page=${page}`)
-  //     // Hit the API and call setData
-  //     //fetchCharacters(url)
-  //     fetchCharacters(url)
-  // }, [page])
+  const [pageNum, setPageNum] = useState(id)
+  const [characters, setCharacters] = useState([])
+  const url = `${process.env.REACT_APP_CharactersAPI}&page=${pageNum}`
+  console.log(url, 'details')
 
   const previousCharacter = () => {
     console.log("previous button");
@@ -59,7 +46,8 @@ const Character = (props) => {
                 <h1 style={{ color: "white" }}>{character?.aliases[0]}</h1>
               </button>
               <Table className="mt-3" responsive striped bordered hover style={{padding: "10px"}}>
-                <tr>
+               <tbody>
+               <tr>
                   <td style={{ width: "300px", padding: "5px" }}>Culture:</td>
                   <td style={{ width: "auto" }}>
                     {character?.culture ? character?.culture : "NA"}
@@ -120,6 +108,7 @@ const Character = (props) => {
                     {character?.spouse ? character?.spouse : "NA"}
                   </td>
                 </tr>
+               </tbody>
               </Table>
             </div>
           </Col>
