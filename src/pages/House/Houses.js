@@ -13,7 +13,7 @@ const Houses = () => {
         {data.length !== 0 &&
           data.map((house, index) => {
             return (
-              <Col lg={6} xs={12} sm={6} className="d-flex mb-1 mb-sm-2">
+              <Col key={index} lg={6} xs={12} sm={6} className="d-flex mb-1 mb-sm-2">
                 {/* <h1>{house?.name}</h1> */}
                 <Card bg="secondary" border="light">
                   <Card.Body>
