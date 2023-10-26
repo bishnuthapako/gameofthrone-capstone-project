@@ -1,8 +1,12 @@
-.vertical {
-    writing-mode: vertical-rl;
-    transform: rotate(180deg);
-}
 
-.tdStyle{
-    width: 100%;
-}
+
+.tableCell {
+    width: 100%; /* or whatever width you prefer */
+    height: 50px; /* or whatever height you prefer */
+  }
+  
+  .tableHeader {
+    background-color: #f8f9fa; /* or any color you prefer */
+    width: 100%; /* or whatever width you prefer */
+    height: 50px; /* or whatever height you prefer */
+  }

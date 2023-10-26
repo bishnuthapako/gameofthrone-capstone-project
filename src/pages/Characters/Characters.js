@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Container, Card, Row, Col, Button } from "react-bootstrap";
+import { Container, Row, Col } from "react-bootstrap";
 import styles from "./Characters.module.css";
 import ReactPaginate from "react-paginate";
 import { Link } from "react-router-dom";
@@ -7,7 +7,7 @@ import { useFetchData } from "../../components/fetchData/useFetchData";
 import axios from "axios";
 
 const Characters = () => {
-  const { data, setData } = useFetchData(process.env.REACT_APP_CharactersAPI);
+  const { data } = useFetchData(process.env.REACT_APP_CharactersAPI);
   // console.log(data, "char-data");
 
   // paginations section
@@ -47,7 +47,7 @@ const Characters = () => {
               return (
                 <Col key={index} lg={6} md={6} sm={6} xs={12} className="mb-3">
                   <Link to={`/characters/${index + 1}`} style={{textDecoration: "none"}} state={character}>
-                    <h1>{character?.aliases[0]}</h1>
+                    <h1>{character?.aliases[0] ? character?.aliases[0] : "NA"}</h1>
                   </Link>
                   <h5>{character?.gender}</h5>
                 </Col>
