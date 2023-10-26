@@ -1,105 +1,70 @@
 import React, { useEffect, useState } from "react";
-import { Container, Row, Col } from "react-bootstrap";
+import { Container, Row, Col, Button } from "react-bootstrap";
 import styles from "./Characters.module.css";
-import ReactPaginate from "react-paginate";
 import { Link } from "react-router-dom";
-import { useFetchData } from "../../components/fetchData/useFetchData";
 import axios from "axios";
 
 const Characters = () => {
-  const { data } = useFetchData(process.env.REACT_APP_CharactersAPI);
-
-  // paginations section
   const [page, setPage] = useState(1);
   const [characters, setCharacters] = useState([]);
 
-  console.log(characters, "charData");
-  const fetchCharacters = async (url) => {
-    const response = await axios.get(url);
-    if (response.data.length !== 0) {
-      setCharacters(response.data);
+
+  useEffect(() => {
+    const fetchCharacters = async () => {
+      try {
+        const response = await axios.get(page ? `${process.env.REACT_APP_CharactersAPI}&page=${page}`: `${process.env.REACT_APP_CharactersAPI}&page=1`);
+        if (response.data.length !== 0) {
+          setCharacters(response.data);
+        }
+      } catch (error) {
+        console.error("An error occurred while fetching characters:", error);
+      }
+    };
+    fetchCharacters();
+  }, [page]);
+
+  const previousCharacter = () => {
+    if (page > 1) {
+      setPage(prevPage => prevPage - 1);
     }
   };
 
-  useEffect(() => {
-    const url = `${process.env.REACT_APP_CharactersAPI}&page=${page}`;
-    console.log(
-      "Page clicked",
-      page,
-      `${process.env.REACT_APP_CharactersAPI}&page=${page}`
-    );
-    // Hit the API and call setData
-    //fetchCharacters(url)
-    fetchCharacters(url);
-  }, [page]);
-
-  // const handlePrevClick = (event) => {
-  //   setPage(page - 1);
-  // };
-
-  // const handleNextClick = (event) => {
-  //   setPage(page + 1);
-  // };
+  const nextCharacter = () => {
+    setPage(prevPage => prevPage + 1);
+  };
 
   return (
     <>
       <Container className={`text-white ${styles.characters}`}>
         <Row className="mt-3">
-          {data.length !== 0 &&
-            data.map((character, index) => {
-              return (
-                <Col key={index} lg={6} md={6} sm={6} xs={12} className="mb-3">
-                  <Link
-                    to={`/characters/${index + 1}`}
-                    style={{ textDecoration: "none" }}
-                    state={character}
-                  >
-                    <h1>
-                      {character?.aliases[0] ? character?.aliases[0] : "NA"}
-                    </h1>
-                  </Link>
-                  <h5>{character?.culture ? character?.culture : "NA"}</h5>
-                  <h5>{character?.gender === "Male" ? "👦🏻" : "👧"}</h5>
-                </Col>
-              );
-            })}
+          {characters.map((character, index) => (
+            <Col key={index} lg={6} md={6} sm={6} xs={12} className="mb-3">
+              <Link
+                to={`/characters/${index + 1}`}
+                style={{ textDecoration: "none" }}
+                state={character}
+              >
+                <h3>
+                  {character?.aliases[0] ? character?.aliases[0] : "NA"}
+                </h3>
+              </Link>
+              <h5>{character?.culture || "NA"}</h5>
+              <h5>{character?.gender === "Male" ? "👦🏻" : "👧"}</h5>
+            </Col>
+          ))}
         </Row>
-        {/* <Row>
+        <Row>
           <Col>
-            <ReactPaginate
-              // containerClassName="pagination"
-              // pageClassName="page-item"
-              // pageLinkClassName="page-link"
-              // breakAriaLabels="..."
-              // nextLabel=">>"
-              // pageRangeDisplayed={4}
-              // pageCount={10}
-              // previousLabel="<<"
-              // breakClassName="page-item"
-              // breakLinkClassName="page-link"
-              // onPageChange={handlePageCount}
-              // renderOnZeroPageCount={null}
-              containerClassName="pagination"
-              pageClassName="page-item"
-              pageLinkClassName="page-link"
-              breakLabel="..."
-              nextLabel="next >"
-              onPageChange={"handlePageClick"}
-              pageRangeDisplayed={5}
-              pageCount={5}
-              previousLabel="< previous"
-              renderOnZeroPageCount={null}
-            />
+            <Button onClick={previousCharacter} className="btn btn-warning">
+              ≪ Previous
+            </Button>
           </Col>
-        </Row> */}
-        {/* <Row>
           <Col>
-          <div style={{display: "flex", justifyContent: "space-between"}}>
-          <button className="btn btn-warning" onClick={handlePrevClick}>Prev</button>
-          <button className="btn btn-warning" onClick={handleNextClick}>Next</button>
-          </div>
+            <Button onClick={nextCharacter} className="btn btn-warning">
+              Next ≫
+            </Button>
           </Col>
-        </Row> */}
+        </Row>
       </Container>
     </>
   );

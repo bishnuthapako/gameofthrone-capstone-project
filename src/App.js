@@ -1,6 +1,5 @@
-import styles from "./App.module.css";
+// import styles from "./App.module.css";
 import AppRoute from "./routes/AppRoute";
-import { useFetchData } from "./components/fetchData/useFetchData";
 import NavigationBar from "./components/NavigationBar/NavigationBar";
 import Loading from "./components/Loading/Loading";
 import { useContext } from "react";

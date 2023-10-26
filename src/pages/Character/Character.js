@@ -1,28 +1,13 @@
-import React, { useState } from "react";
-import { Container, Row, Col, Button, Table } from "react-bootstrap";
-import { useLocation, useParams } from "react-router-dom";
+import React from "react";
+import { Container, Row, Col, Table } from "react-bootstrap";
+import { useLocation } from "react-router-dom";
 // import styles from "./Character.module.css";
-// import axios from "axios";
+
 
 const Character = (props) => {
   const location = useLocation();
   const character = location.state;
-  console.log("character", character);
-  const { id } = useParams();
 
-  const [pageNum, setPageNum] = useState(0);
-  const [characters, setCharacters] = useState([]);
-  const url = `${process.env.REACT_APP_CharactersAPI}&page=${pageNum}`;
-
-  console.log(url, "details");
-
-  const previousCharacter = () => {
-    console.log(pageNum + 1);
-  };
-
-  const nextCharacter = () => {
-    console.log(pageNum, "next button");
-  };
   return (
     <div>
       <Container>
@@ -134,21 +119,6 @@ const Character = (props) => {
                 gap: 4,
               }}
             >
-              <Row>
-                <Col>
-                  <Button
-                    onClick={previousCharacter}
-                    className="btn btn-warning"
-                  >
-                    ≪ Previous
-                  </Button>
-                </Col>
-                <Col>
-                  <Button onClick={nextCharacter} className="btn btn-warning">
-                    Next ≫
-                  </Button>
-                </Col>
-              </Row>
             </div>
           </Col>
         </Row>
