@@ -13,25 +13,28 @@ const Houses = () => {
         {data.length !== 0 &&
           data.map((house, index) => {
             return (
-              <Col key={index} lg={6} xs={12} sm={6} className="d-flex mb-1 mb-sm-2">
-                {/* <h1>{house?.name}</h1> */}
+              <Col
+                key={index}
+                lg={6}
+                xs={12}
+                sm={6}
+                className="d-flex mb-1 mb-sm-2"
+              >
                 <Card bg="secondary" border="light">
                   <Card.Body>
-                  <Card.Title className="text-light">{house?.name}</Card.Title>
+                    <Card.Title className="text-light">
+                      {house?.name}
+                    </Card.Title>
                     <blockquote className="blockquote mb-0">
                       <p className="text-warning">
-                        {' '}
-                        {house?.coatOfArms ? house?.coatOfArms : "NA"}
-                        {' '}
+                        {" "}
+                        {house?.coatOfArms ? house?.coatOfArms : "NA"}{" "}
                       </p>
                       <footer className="blockquote-footer text-danger">
                         {house?.region}{" "}
                         <cite title="Source Title">Source Title</cite>
                       </footer>
                     </blockquote>
-
-                    {/* <Card.Text>{' '} {house?.coatOfArms ? house?.coatOfArms : "NA"}{' '}</Card.Text>
-                    <Card.Subtitle>{house?.region}</Card.Subtitle> */}
                   </Card.Body>
                 </Card>
               </Col>

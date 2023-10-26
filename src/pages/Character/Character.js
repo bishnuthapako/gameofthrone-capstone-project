@@ -1,8 +1,8 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { Container, Row, Col, Button, Table } from "react-bootstrap";
 import { useLocation, useParams } from "react-router-dom";
-import styles from "./Character.module.css";
-import axios from "axios";
+// import styles from "./Character.module.css";
+// import axios from "axios";
 
 const Character = (props) => {
   const location = useLocation();
@@ -10,18 +10,18 @@ const Character = (props) => {
   console.log("character", character);
   const { id } = useParams();
 
-  const [pageNum, setPageNum] = useState(id);
+  const [pageNum, setPageNum] = useState(0);
   const [characters, setCharacters] = useState([]);
   const url = `${process.env.REACT_APP_CharactersAPI}&page=${pageNum}`;
 
   console.log(url, "details");
 
   const previousCharacter = () => {
-    console.log("previous button");
+    console.log(pageNum + 1);
   };
 
   const nextCharacter = () => {
-    console.log("next button");
+    console.log(pageNum, "next button");
   };
   return (
     <div>
