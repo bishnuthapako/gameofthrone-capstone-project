@@ -4,7 +4,7 @@ import { Container, Row, Col, Card } from "react-bootstrap";
 
 const Houses = () => {
   const { data } = useFetchData(process.env.REACT_APP_HousesAPI);
-  console.log(data, "houses");
+  
 
   return (
     <Container>

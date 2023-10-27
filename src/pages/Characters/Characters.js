@@ -1,13 +1,14 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Container, Row, Col, Button } from "react-bootstrap";
 import styles from "./Characters.module.css";
 import { Link } from "react-router-dom";
 import axios from "axios";
+import { LoadingContext } from "../../components/context/LoadingProvider";
 
 const Characters = () => {
   const [page, setPage] = useState(1);
   const [characters, setCharacters] = useState([]);
-
+const {enableLoading, disableLoading} = useContext(LoadingContext)
 
   useEffect(() => {
     const fetchCharacters = async () => {
@@ -20,8 +21,16 @@ const Characters = () => {
         console.error("An error occurred while fetching characters:", error);
       }
     };
-    fetchCharacters();
-  }, [page]);
+
+    async function runGetGameOfThroneCharacters(){
+      enableLoading();
+      await fetchCharacters();
+      disableLoading();
+    }
+
+    runGetGameOfThroneCharacters()
+    
+  }, [page, enableLoading, disableLoading]);
 
   const previousCharacter = () => {
     if (page > 1) {
