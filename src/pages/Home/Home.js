@@ -1,5 +1,5 @@
 import React from "react";
-import styles from "../Home/House.module.css";
+// import styles from "../Home/House.module.css";
 import { useFetchData } from "../../components/fetchData/useFetchData";
 import { Card, Col, Container, Row } from "react-bootstrap";
 

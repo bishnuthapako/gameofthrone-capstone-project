@@ -22,7 +22,6 @@ function App() {
           <div className="footer">
           <Footer />
           </div>
-          <div>hello</div>
         </BrowserRouter>
         
       }
