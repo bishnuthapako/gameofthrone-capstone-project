@@ -63,7 +63,7 @@ const {enableLoading, disableLoading} = useContext(LoadingContext)
           ))}
         </Row>
         <Row>
-          <Col>
+          <Col className="mb-3">
             <Button onClick={previousCharacter} className="btn btn-warning">
               ≪ Previous
             </Button>
