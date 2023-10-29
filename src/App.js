@@ -1,14 +1,13 @@
-import styles from "./App.module.css";
+// import styles from "./App.module.css";
 import AppRoute from "./routes/AppRoute";
-import { useFetchData } from "./components/fetchData/useFetchData";
 import NavigationBar from "./components/NavigationBar/NavigationBar";
 import Loading from "./components/Loading/Loading";
 import { useContext } from "react";
 import { LoadingContext } from "./components/context/LoadingProvider";
 import { BrowserRouter } from "react-router-dom";
+import Footer from "./components/footer/Footer"
 
 function App() {
-  const { data, setData } = useFetchData();
   const { isLoading } = useContext(LoadingContext);
 
 
@@ -18,9 +17,13 @@ function App() {
         <BrowserRouter>
           <NavigationBar />
           <div> 
-          <AppRoute data={data} />
+          <AppRoute/>
+          </div>
+          <div className="footer">
+          <Footer />
           </div>
         </BrowserRouter>
+        
       }
       {
         // todo render Loading based on its condition

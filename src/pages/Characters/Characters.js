@@ -1,27 +1,78 @@
-import React from "react";
-import { Container, Card, Row, Col, Button } from "react-bootstrap";
+import React, { useContext, useEffect, useState } from "react";
+import { Container, Row, Col, Button } from "react-bootstrap";
 import styles from "./Characters.module.css";
-import Paginations from "../../components/Pagination/Paginations";
+import { Link } from "react-router-dom";
+import axios from "axios";
+import { LoadingContext } from "../../components/context/LoadingProvider";
 
-const Characters = ({ data }) => {
-  console.log(data, "char-data");
+const Characters = () => {
+  const [page, setPage] = useState(1);
+  const [characters, setCharacters] = useState([]);
+const {enableLoading, disableLoading} = useContext(LoadingContext)
+
+  useEffect(() => {
+    const fetchCharacters = async () => {
+      try {
+        const response = await axios.get(page ? `${process.env.REACT_APP_CharactersAPI}&page=${page}`: `${process.env.REACT_APP_CharactersAPI}&page=1`);
+        if (response.data.length !== 0) {
+          setCharacters(response.data);
+        }
+      } catch (error) {
+        console.error("An error occurred while fetching characters:", error);
+      }
+    };
+
+    async function runGetGameOfThroneCharacters(){
+      enableLoading();
+      await fetchCharacters();
+      disableLoading();
+    }
+
+    runGetGameOfThroneCharacters()
+    
+  }, [page, enableLoading, disableLoading]);
+
+  const previousCharacter = () => {
+    if (page > 1) {
+      setPage(prevPage => prevPage - 1);
+    }
+  };
+
+  const nextCharacter = () => {
+    setPage(prevPage => prevPage + 1);
+  };
 
   return (
     <>
       <Container className={`text-white ${styles.characters}`}>
         <Row className="mt-3">
-          {data.length !== 0 &&
-            data.map((items, index) => {
-              return (
-                <Col key={index} lg={6} md={6} sm={6} xs={12} className="mb-3">
-                  <h1>{items.aliases[0]}</h1>
-                  <h5>{items.gender}</h5>
-                </Col>
-              );
-            })}
+          {characters.map((character, index) => (
+            <Col key={index} lg={6} md={6} sm={6} xs={12} className="mb-3">
+              <Link
+                to={`/characters/${index + 1}`}
+                style={{ textDecoration: "none" }}
+                state={character}
+              >
+                <h3>
+                  {character?.aliases[0] ? character?.aliases[0] : "NA"}
+                </h3>
+              </Link>
+              <h5>{character?.culture || "NA"}</h5>
+              <h5>{character?.gender === "Male" ? "👦🏻" : "👧"}</h5>
+            </Col>
+          ))}
         </Row>
         <Row>
-          <Paginations />
+          <Col className="mb-3">
+            <Button onClick={previousCharacter} className="btn btn-warning">
+              ≪ Previous
+            </Button>
+          </Col>
+          <Col>
+            <Button onClick={nextCharacter} className="btn btn-warning">
+              Next ≫
+            </Button>
+          </Col>
         </Row>
       </Container>
     </>
