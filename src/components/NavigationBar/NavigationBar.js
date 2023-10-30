@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useMemo } from "react";
 import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
@@ -13,13 +13,18 @@ const NavigationBar = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const { data } = useFetchData(process.env.REACT_APP_CharactersAPI);
   const [show, setShow] = useState(false);
+  let characterSearch = [];
 
-  const characterSearch = data.filter((character) =>
-    character.name.toLowerCase().includes(searchTerm.toLocaleLowerCase())
-  );
+  characterSearch = useMemo(() => data.filter((character) => {
+    //console.log("Filtering...", character.aliases[0].toLowerCase(), searchTerm.toLocaleLowerCase())
+    return character.aliases[0].toLowerCase().includes(searchTerm.toLocaleLowerCase())
+  }), [searchTerm]);
+
+  console.log(characterSearch)
 
   const handleSearch = (e) => {
     e.preventDefault();
+    console.log(characterSearch, searchTerm)
     console.log("form submit");
   };
 
@@ -54,6 +59,7 @@ const NavigationBar = () => {
                 onChange={(e) => {
                   setSearchTerm(e.target.value);
                   setShow(e.target.value.length > 0); // Show results if input is not empty
+
                 }}
   
               />
@@ -67,11 +73,11 @@ const NavigationBar = () => {
                   {characterSearch.map((character, id) => (
                     <h4 key={id} className="text-start p-1">
                       <Link
-                        to={`/characters/${id + 1}`}
+                        to={`/characterssss/${id + 1}`}
                         style={{ textDecoration: "none", color: "white" }}
                         state={character}
                       >
-                        {character.name}
+                        {character.aliases[0]}
                       </Link>
                     </h4>
                   ))}
