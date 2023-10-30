@@ -49,7 +49,7 @@ const {enableLoading, disableLoading} = useContext(LoadingContext)
       <Container className={`text-white ${styles.characters}`}>
         <Row className="mt-3">
           {characters.map((character, index) => (
-            <Col key={index} lg={6} md={6} sm={6} xs={12} className="mb-3">
+            <Col key={index} lg={6} md={6} sm={6} xs={12} className="mb-3 text-center text-lg-start">
               <Link
                 to={`/characters/${index + 1}`}
                 style={{ textDecoration: "none" }}
