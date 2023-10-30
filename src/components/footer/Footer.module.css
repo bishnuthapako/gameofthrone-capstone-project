@@ -1,11 +1,11 @@
 .footer{
     width: 100%;
-    height: 150px;
-    display: flex;
+    height: 80px;
+    /* display: flex; */
     justify-content: center;
     background-color: rgb(250, 250, 250);
-    color: rgb(9, 9, 219);
-    align-items: center;
+    color: rgb(23, 23, 27);
+    /* align-items: center; */
     position: sticky;
     top: 100%;
 }
