@@ -1,9 +1,8 @@
-import React, { useState, useMemo } from "react";
+import React, { useState, useCallback } from "react";
 import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import Form from "react-bootstrap/Form";
-import Button from "react-bootstrap/Button";
 import { Link } from "react-router-dom";
 import { useFetchData } from "../fetchData/useFetchData";
 import styles from "./Navigation.module.css";
@@ -15,18 +14,18 @@ const NavigationBar = () => {
   const [show, setShow] = useState(false);
   let characterSearch = [];
 
-  characterSearch = useMemo(() => data.filter((character) => {
-    //console.log("Filtering...", character.aliases[0].toLowerCase(), searchTerm.toLocaleLowerCase())
-    return character.aliases[0].toLowerCase().includes(searchTerm.toLocaleLowerCase())
-  }), [searchTerm]);
+  characterSearch = useCallback(
+    () =>
+      data.filter((character) => {
+        return character.aliases[0]
+          .toLowerCase()
+          .includes(searchTerm.toLocaleLowerCase());
+      }),
+    [searchTerm, data]
+  );
 
-  console.log(characterSearch)
+  console.log(characterSearch);
 
-  const handleSearch = (e) => {
-    e.preventDefault();
-    console.log(characterSearch, searchTerm)
-    console.log("form submit");
-  };
 
   return (
     <>
@@ -49,31 +48,26 @@ const NavigationBar = () => {
                 Houses
               </Nav.Link>
             </Nav>
-            <Form onSubmit={handleSearch} className={`${styles.form} d-flex`}>
+            <Form className={`${styles.form} d-flex`}>
               <Form.Control
                 type="search"
                 placeholder="Search"
                 className="me-2"
                 aria-label="Search"
-                
                 onChange={(e) => {
                   setSearchTerm(e.target.value);
                   setShow(e.target.value.length > 0); // Show results if input is not empty
-
                 }}
-  
               />
-              <Button type="submit" variant="outline-success">
-                Search
-              </Button>
+          
               {show && (
                 <div
                   className={`text-end bg-danger border mt-2 rounded p-1 ${styles.characterDisplay}`}
                 >
-                  {characterSearch.map((character, id) => (
+                  {characterSearch().map((character, id) => (
                     <h4 key={id} className="text-start p-1">
                       <Link
-                        to={`/characterssss/${id + 1}`}
+                        to={`/characters/${id + 1}`}
                         style={{ textDecoration: "none", color: "white" }}
                         state={character}
                       >
