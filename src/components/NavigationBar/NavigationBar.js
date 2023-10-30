@@ -62,18 +62,18 @@ const NavigationBar = () => {
           
               {show && (
                 <div
-                  className={`text-end bg-danger border mt-2 rounded p-1 ${styles.characterDisplay}`}
+                  className={`text-end bg-light border mt-2 rounded p-1 ${styles.characterDisplay}`}
                 >
                   {characterSearch().map((character, id) => (
-                    <h4 key={id} className="text-start p-1">
+                    <p key={id} className="text-start p-1">
                       <Link
                         to={`/characters/${id + 1}`}
-                        style={{ textDecoration: "none", color: "white" }}
+                        style={{ textDecoration: "none", color: "black"}}
                         state={character}
                       >
                         {character.aliases[0]}
                       </Link>
-                    </h4>
+                    </p>
                   ))}
                 </div>
               )}

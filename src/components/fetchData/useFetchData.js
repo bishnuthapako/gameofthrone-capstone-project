@@ -20,7 +20,7 @@ export const useFetchData = (apiURL) => {
       }
     };
     fetchData();
-  }, []); // This empty dependency array ensures the effect runs only once when the component mounts.
+  }, [apiURL]); // This empty dependency array ensures the effect runs only once when the component mounts.
 
-  return { data, setData };
+  return { data };
 };

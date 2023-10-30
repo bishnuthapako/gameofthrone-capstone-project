@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useCallback, useContext, useEffect, useState } from "react";
 import { Container, Row, Col, Button } from "react-bootstrap";
 import styles from "./Characters.module.css";
 import { Link } from "react-router-dom";
@@ -6,9 +6,11 @@ import axios from "axios";
 import { LoadingContext } from "../../components/context/LoadingProvider";
 
 const Characters = () => {
-  const [page, setPage] = useState(1);
+  const [page, setPage] = useState(0);
   const [characters, setCharacters] = useState([]);
 const {enableLoading, disableLoading} = useContext(LoadingContext)
+// console.log(characters, 'characters-api');
+
 
   useEffect(() => {
     const fetchCharacters = async () => {
@@ -32,15 +34,15 @@ const {enableLoading, disableLoading} = useContext(LoadingContext)
     
   }, [page, enableLoading, disableLoading]);
 
-  const previousCharacter = () => {
+  const previousCharacter = useCallback(() => {
     if (page > 1) {
       setPage(prevPage => prevPage - 1);
     }
-  };
+  },[page])
 
-  const nextCharacter = () => {
+  const nextCharacter = useCallback(() => {
     setPage(prevPage => prevPage + 1);
-  };
+  },[])
 
   return (
     <>
