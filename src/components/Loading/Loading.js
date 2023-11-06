@@ -15,9 +15,9 @@ setTimeout(()=>{
 
   },[dots])
   return (
-    <div className={styles.loading}>
-      <span style={{color:"white"}}>Loading...</span>
-      {dots.map((dots,idx)=><span key={idx} style={{color: "white"}}>{dots}</span>)}
+    <div className={`${styles.loading} text-center`}>
+      <span style={{color:"white", fontSize: "25px", fontWeight: "bold"}}>Loading ....</span>
+      {dots.map((dots,idx)=><span key={idx} style={{color: "white", fontWeight: "bold", fontSize: "25px"}}>{dots}</span>)}
     </div>
   );
 };

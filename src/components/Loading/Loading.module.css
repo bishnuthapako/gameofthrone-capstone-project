@@ -13,4 +13,11 @@
     transform: translate(-50%, -50%);
     border: 2px solid #ffff;
     background-color: #0000;
+    z-index: 999;
+    background-color: #5b5b5c;
+}
+@media  only screen and (max-width: 600px)  {
+    .loading {
+        width: 16rem;
+    }
 }

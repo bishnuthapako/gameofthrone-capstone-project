@@ -5,45 +5,46 @@ import { LoadingContext } from "../../components/context/LoadingProvider";
 
 const Houses = () => {
   const [houses, setHouses] = useState([]);
-  const [pageNumber, setPageNumber] = useState(0)
-  const {enableLoading, disableLoading} = useContext(LoadingContext);
+  const [pageNumber, setPageNumber] = useState(0);
+  const { enableLoading, disableLoading } = useContext(LoadingContext);
 
-  console.log(houses, 'houses')
-  console.log(pageNumber, 'pagenumber')
+  console.log(houses, "houses");
+  console.log(pageNumber, "pagenumber");
 
-
-  useEffect(()=>{
-
-  const getHouses = async () => {
-    try {
-      const response = await axios.get(pageNumber? `${process.env.REACT_APP_HousesAPI}&page=${pageNumber}`: `${process.env.REACT_APP_HousesAPI}&page=1`);
-      if (response.data !== 0) {
-        setHouses(response.data);
+  useEffect(() => {
+    const getHouses = async () => {
+      try {
+        const response = await axios.get(
+          pageNumber
+            ? `${process.env.REACT_APP_HousesAPI}&page=${pageNumber}`
+            : `${process.env.REACT_APP_HousesAPI}&page=1`
+        );
+        if (response.data !== 0) {
+          setHouses(response.data);
+        }
+      } catch (err) {
+        console.log(err.message);
       }
-    } catch (err) {
-      console.log(err.message);
+    };
+    async function runGameOfThronehouses() {
+      enableLoading();
+      await getHouses();
+      disableLoading();
     }
-  };
-    async function runGameOfThronehouses()
-    {
-      enableLoading()
-      await getHouses()
-      disableLoading()
-    }
-    runGameOfThronehouses()
-  },[pageNumber, enableLoading, disableLoading])
+    runGameOfThronehouses();
+  }, [pageNumber, enableLoading, disableLoading]);
 
   const handlePreviousHouse = useCallback(() => {
     if (pageNumber > 1) {
       setPageNumber((prev) => prev - 1);
-      console.log("previous button")
+      console.log("previous button");
     }
   }, [pageNumber]);
 
-  const handleNextHouse = useCallback(()=>{
-      setPageNumber((prev)=> prev + 1)
-      console.log("next button")
-  },[])
+  const handleNextHouse = useCallback(() => {
+    setPageNumber((prev) => prev + 1);
+    console.log("next button");
+  }, []);
 
   return (
     <Container>
@@ -79,14 +80,20 @@ const Houses = () => {
             );
           })}
       </Row>
-      <Row className="mb-2">
-        <Col md={6} xs={6}>
-          <Button onClick={handlePreviousHouse} variant="warning">Previous</Button>
-        </Col>
-        <Col md={6} xs={6}>
-          <Button onClick={handleNextHouse} variant="warning">Next</Button>
-        </Col>
-      </Row>
+      { houses.length > 0 &&
+         <Row className="mb-2">
+         <Col md={6} xs={6}>
+           <Button onClick={handlePreviousHouse} variant="warning">
+             Previous
+           </Button>
+         </Col>
+         <Col md={6} xs={6}>
+           <Button onClick={handleNextHouse} variant="warning">
+             Next
+           </Button>
+         </Col>
+       </Row>
+      }
     </Container>
   );
 };

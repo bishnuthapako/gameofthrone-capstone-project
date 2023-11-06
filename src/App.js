@@ -16,19 +16,22 @@ function App() {
       {
         <BrowserRouter>
           <NavigationBar />
-          <div> 
+          <div className="base-container"> 
           <AppRoute/>
           </div>
+          <>
+          {
+            // todo render Loading based on its condition
+            isLoading && <Loading />
+          }
+          </>
           <div className="footer">
           <Footer />
           </div>
         </BrowserRouter>
         
       }
-      {
-        // todo render Loading based on its condition
-        isLoading && <Loading />
-      }
+      
     </>
   );
 }

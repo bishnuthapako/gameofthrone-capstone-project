@@ -30,3 +30,7 @@ h5{
     font-size: 10px;
   }
 }
+
+.base-container {
+  min-height: 600px;
+}
